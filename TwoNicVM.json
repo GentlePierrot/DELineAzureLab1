@@ -45,8 +45,15 @@
             "comments": "Availability set for eventual NVA HA",
             "type": "Microsoft.Compute/availabilitySets",
             "name": "[variables('avSetName')]",
-            "apiVersion": "2016-03-30",
-            "location": "[resourceGroup().location]"
+            "apiVersion": "2017-03-30",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "platformUpdateDomainCount": 3,
+                "platformFaultDomainCount": 2
+            },
+            "sku": {
+                "name": "Aligned"
+            }
         },
         {
             "name": "[parameters('virtualMachineName')]",
