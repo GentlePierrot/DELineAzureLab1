@@ -8,7 +8,7 @@
      </h1>
      <br>
      <?php
-       $hosts = array ("bing.com", "10.1.1.4");
+       $hosts = array ("bing.com", "10.0.2.4");
        $allReachable = true;
        foreach ($hosts as $host) {
          $result = exec ("ping -c 1 -W 1 " . $host . " 2>&1 | grep received");
