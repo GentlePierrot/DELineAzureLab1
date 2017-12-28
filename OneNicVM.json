@@ -33,7 +33,7 @@
         "virtualNetworkName": "VNET1",
         "subnet3Name": "Subnet3",
         "subnet3Ref": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnet3Name'))]",
-        "networkSecurityGroupName": "VNET1NSG",
+        "networkSecurityGroupName": "VNET1NSG"
     },
     "resources": [
         {
@@ -81,7 +81,7 @@
                                 "primary": true
                             },
                             "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('virtualMachineName'),variables('nic1')))]"
-                        },
+                        }
                     ]
                 },
                 "diagnosticsProfile": {
