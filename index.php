@@ -10,6 +10,7 @@
      <?php
        $hosts = array ("bing.com", "10.0.2.4");
        $allReachable = true;
+       $hostip = exec ("nsloopup myip.opendns.com resolver1.opendns.com | tail -n 2 | head -n 1");
        foreach ($hosts as $host) {
          $result = exec ("ping -c 1 -W 1 " . $host . " 2>&1 | grep received");
          $pos = strpos ($result, "1 received");
@@ -27,6 +28,7 @@
          http_response_code (200);
          print ("All target hosts seem to be reachable\n");
        }
+      print ("My IP $hostip .\n");
      ?>
    </body>
 </html>
