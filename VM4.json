@@ -31,9 +31,9 @@
     "variables": {
         "nic1": "nic-1",
         "virtualNetworkName": "VNET2",
+        "publicIPAddressName": "publicIp",
         "subnet1Name": "Subnet1",
-        "subnet1Ref": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnet1Name'))]",
-        "networkSecurityGroupName": "VNET1NSG"
+        "subnet1Ref": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnet1Name'))]"
     },
     "resources": [
         {
@@ -43,7 +43,8 @@
             "location": "[resourceGroup().location]",
             "comments": "This is the virtual machine that you're building.",
             "dependsOn": [
-                "[concat(parameters('virtualMachineName'),variables('nic1'))]"
+                "[concat(parameters('virtualMachineName'),variables('nic1'))]",
+                
             ],
             "properties": {
                 "osProfile": {
@@ -98,7 +99,7 @@
             "location": "[resourceGroup().location]",
             "comments": "This will be your Primary NIC",
             "dependsOn": [
-                "[variables('networkSecurityGroupName')]"
+                "[concat(parameters('virtualMachineName'),variables('publicIpAddressName'))]"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -108,10 +109,23 @@
                             "subnet": {
                                 "id": "[variables('subnet1Ref')]"
                             },
-                            "privateIPAllocationMethod": "Dynamic"
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIpAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIpAddresses', concat(parameters('virtualMachineName'),variables('publicIpAddressName')))]"
+                            }
                         }
                     }
                 ]
+            }
+        },
+        {
+            "name": "[concat(parameters('virtualMachineName'),variables('publicIpAddressName'))]",
+            "type": "Microsoft.Network/publicIpAddresses",
+            "apiVersion": "2017-06-01",
+            "location": "[resourceGroup().location]",
+            "comments": "Public IP for your Primary NIC",
+            "properties": {
+                "publicIpAllocationMethod": "Dynamic"
             }
         }
     ],
