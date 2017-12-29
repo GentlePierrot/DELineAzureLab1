@@ -43,8 +43,7 @@
             "location": "[resourceGroup().location]",
             "comments": "This is the virtual machine that you're building.",
             "dependsOn": [
-                "[concat(parameters('virtualMachineName'),variables('nic1'))]",
-                
+                "[concat(parameters('virtualMachineName'),variables('nic1'))]"   
             ],
             "properties": {
                 "osProfile": {
