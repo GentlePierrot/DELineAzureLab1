@@ -4,7 +4,7 @@
    </header>
    <body>
      <h1>
-       Welcome to the Q3NETBOOTCAMP Azure Networking Lab
+       Welcome to the Microsoft TechSummit Azure Networking Lab
      </h1>
      <br>
      <?php
