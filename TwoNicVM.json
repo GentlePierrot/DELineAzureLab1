@@ -4,7 +4,7 @@
     "parameters": {
         "virtualMachineSize": {
             "type": "string",
-            "defaultValue": "Standard_A1_v2",
+            "defaultValue": "Standard_B1s",
             "metadata": {
                 "description": "Default virtual machine size"
             }
