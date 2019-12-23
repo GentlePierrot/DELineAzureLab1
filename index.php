@@ -8,7 +8,7 @@
      </h1>
      <br>
      <?php
-       $hosts = array ("bing.com", "172.0.2.4");
+       $hosts = array ("www.baidu.com", "172.0.2.4");
        $allReachable = true;
        $hostip = exec ("nslookup myip.opendns.com resolver1.opendns.com | tail -n 2 | head -n 1");
        foreach ($hosts as $host) {
